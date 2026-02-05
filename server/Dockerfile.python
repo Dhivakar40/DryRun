@@ -1,0 +1,13 @@
+# server/Dockerfile.python
+# We use a slim version of Python to keep it fast
+FROM python:3.9-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Install basic tools (optional but helpful for debugging)
+RUN apt-get update && apt-get install -y procps
+
+# IMPORTANT: Keep the container alive so we can send commands to it
+# If we don't do this, the container will exit immediately after starting.
+CMD ["tail", "-f", "/dev/null"]
